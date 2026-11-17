@@ -1,7 +1,7 @@
 // Service worker do Diário de Peptídeos.
-// App (HTML) busca a versão nova primeiro e usa o cache só sem internet.
+// App (HTML) busca sempre a versão nova primeiro e usa o cache só sem internet.
 // Bibliotecas e fontes ficam em cache. Dados do Supabase nunca passam pelo cache.
-const VERSAO = 'diario-v1';
+const VERSAO = 'diario-v2';
 const BASE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
@@ -24,7 +24,7 @@ self.addEventListener('fetch', e => {
 
   if (req.mode === 'navigate' || url.origin === location.origin) {
     e.respondWith(
-      fetch(req)
+      fetch(req, { cache: 'no-cache' })
         .then(res => { const copia = res.clone(); caches.open(VERSAO).then(c => c.put(req, copia)); return res; })
         .catch(() => caches.match(req).then(m => m || caches.match('./index.html')))
     );
