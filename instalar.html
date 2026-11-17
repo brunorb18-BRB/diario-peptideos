@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Instalar o Diário de Peptídeos</title>
+<meta name="description" content="Como instalar o Diário de Peptídeos no Android, iPhone ou computador.">
+<meta name="theme-color" content="#0D6B62">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Diário de Peptídeos">
+<meta property="og:description" content="Controle de doses, peso, medidas, exames, treino e suplementos. Veja como instalar no seu celular.">
+<meta property="og:image" content="https://brunorb18-brb.github.io/diario-peptideos/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: página única de leitura, coluna estreita; abas de sistema só trocam o bloco de passos */
+:root{
+  --bg:#F2F5F4; --surface:#FFFFFF; --sunk:#E7EDEB; --ink:#14201E; --muted:#5B6B68; --line:#D6E0DD;
+  --accent:#0D6B62; --accent-ink:#FFFFFF; --accent-soft:#D9EEEA; --warn:#A35A0A; --warn-soft:#FAEAD6;
+  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0E1513; --surface:#17211F; --sunk:#1E2A27; --ink:#E5EEEB; --muted:#93A5A1; --line:#2B3835;
+  --accent:#4DC0B1; --accent-ink:#062421; --accent-soft:#163430; --warn:#E8A254; --warn-soft:#3A2913; color-scheme:dark}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+main{max-width:600px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));padding-block:calc(28px + env(safe-area-inset-top,0px)) calc(40px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:30px}
+h1,h2,h3{font-family:var(--f-display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:32px;line-height:1.08}
+h2{font-size:21px}
+h3{font-size:16px}
+p{margin:0}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+.hero{display:flex;flex-direction:column;gap:14px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:64px;height:64px;border-radius:16px;flex:none}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.feats{display:flex;flex-wrap:wrap;gap:6px}
+.feats span{font-size:13px;font-weight:600;background:var(--accent-soft);color:var(--ink);padding:4px 10px;border-radius:999px}
+.btns{display:flex;flex-direction:column;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;font:700 16px var(--f-body);text-decoration:none;border-radius:14px;padding:14px 16px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.note{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:12px 14px;font-size:14px;font-weight:500}
+.note.ok{background:var(--accent-soft);color:var(--ink)}
+.seg{display:flex;background:var(--sunk);border-radius:999px;padding:4px;gap:2px}
+.seg button{flex:1;border:0;background:transparent;color:var(--muted);font:700 14px var(--f-body);padding:9px 6px;border-radius:999px;cursor:pointer}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.panel{display:flex;flex-direction:column;gap:14px}
+ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
+ol.steps li::before{content:counter(s);width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font:700 16px var(--f-display);display:flex;align-items:center;justify-content:center}
+ol.steps b{font-weight:700}
+.ico{display:inline-flex;align-items:center;justify-content:center;vertical-align:-5px;width:24px;height:24px;border-radius:6px;background:var(--sunk);margin:0 2px}
+.ico svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.faq{display:flex;flex-direction:column;gap:8px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+summary{cursor:pointer;font-weight:700}
+details p{margin-top:8px;color:var(--muted);font-size:15px}
+.foot{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="brand"><img src="icon-192.png" alt=""><div><p class="eyebrow">Diário de</p><h1>Peptídeos</h1></div></div>
+    <p>Um app para acompanhar doses de peptídeos, peso, medidas, exames, treino e suplementos, com resumo em PDF para levar ao médico. Seus dados ficam na sua conta e sincronizam entre celular e computador.</p>
+    <div class="feats"><span>Calendário de doses</span><span>Estoque do frasco</span><span>Peso e IMC</span><span>Medidas e fotos</span><span>Exames</span><span>Treino</span><span>Suplementos</span></div>
+    <p class="note ok" id="installed" hidden>O app já está instalado neste aparelho. Pode abrir pelo ícone na tela inicial.</p>
+    <p class="note" id="inapp" hidden></p>
+    <div class="btns">
+      <button class="btn primary" id="install" hidden>Instalar agora</button>
+      <a class="btn" id="open" href="./">Abrir o app no navegador</a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Como instalar</h2>
+    <div class="seg" role="tablist">
+      <button role="tab" data-os="android">Android</button>
+      <button role="tab" data-os="ios">iPhone</button>
+      <button role="tab" data-os="pc">Computador</button>
+    </div>
+
+    <div data-panel="android" class="panel" hidden>
+      <ol class="steps">
+        <li><div>Abra este link no <b>Google Chrome</b>. Se ele abriu dentro do WhatsApp ou do Instagram, toque nos três pontinhos <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></span> e escolha <b>Abrir no Chrome</b>.</div></li>
+        <li><div>Toque em <b>Instalar agora</b>, no topo desta página. Se o botão não aparecer, toque no menu <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></span> do Chrome, no canto superior direito.</div></li>
+        <li><div>Escolha <b>Instalar app</b> (em alguns celulares aparece <b>Adicionar à tela inicial</b>) e confirme em <b>Instalar</b>.</div></li>
+        <li><div>Pronto: o ícone do <b>Diário</b> aparece junto com os seus outros apps. Abra por ele daqui pra frente.</div></li>
+      </ol>
+    </div>
+
+    <div data-panel="ios" class="panel" hidden>
+      <ol class="steps">
+        <li><div>Abra este link no <b>Safari</b>. Se ele abriu dentro do WhatsApp ou do Instagram, toque no ícone de compartilhar ou nos três pontinhos e escolha <b>Abrir no Safari</b>.</div></li>
+        <li><div>Toque no botão <b>Compartilhar</b> <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11v9h12v-9"/></svg></span>, na barra de baixo da tela (no iPad fica no topo).</div></li>
+        <li><div>Role a lista para baixo e toque em <b>Adicionar à Tela de Início</b> <span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg></span>. Se não encontrar, toque em <b>Editar ações</b> no fim da lista e ative essa opção.</div></li>
+        <li><div>Toque em <b>Adicionar</b>, no canto superior direito. O ícone do <b>Diário</b> aparece na tela inicial. Abra sempre por ele.</div></li>
+      </ol>
+    </div>
+
+    <div data-panel="pc" class="panel" hidden>
+      <ol class="steps">
+        <li><div>Abra este link no <b>Google Chrome</b> ou no <b>Microsoft Edge</b>.</div></li>
+        <li><div>Clique em <b>Instalar agora</b>, no topo desta página. Se não aparecer, clique no ícone de instalar <span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M12 8v6M9 11l3 3 3-3M8 21h8"/></svg></span> no fim da barra de endereço.</div></li>
+        <li><div>Confirme em <b>Instalar</b>. O app abre numa janela própria e ganha atalho no menu Iniciar.</div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Primeiro acesso</h2>
+    <ol class="steps">
+      <li><div>Abra o app e toque em <b>Criar conta</b>.</div></li>
+      <li><div>Coloque seu e-mail e uma senha com pelo menos 6 caracteres. Use os mesmos no celular e no computador para ver os mesmos dados.</div></li>
+      <li><div>Marque a caixa de concordância e toque em <b>Criar conta</b>.</div></li>
+      <li><div>Comece pela aba <b>Peptídeos</b>: cadastre o frasco (mg), quanto de água usou (mL), a dose e os dias de aplicação. O app calcula as UI e avisa quando comprar outro.</div></li>
+    </ol>
+  </section>
+
+  <section class="faq">
+    <h2>Dúvidas comuns</h2>
+    <details><summary>Não aparece a opção de instalar</summary><p>Quase sempre é porque o link abriu dentro de outro app, como WhatsApp ou Instagram. Abra no Chrome (Android ou computador) ou no Safari (iPhone) e tente de novo.</p></details>
+    <details><summary>Preciso pagar ou baixar da loja?</summary><p>Não. É uma versão de teste, gratuita, e instala direto pelo navegador, sem Play Store nem App Store.</p></details>
+    <details><summary>Quem vê os meus dados?</summary><p>Só você. Cada conta tem os dados separados e as fotos ficam num espaço privado. Dá para exportar ou apagar tudo pela opção Conta.</p></details>
+    <details><summary>Funciona sem internet?</summary><p>Sim. O que você registrar sem internet fica guardado no aparelho e sobe sozinho quando a conexão voltar.</p></details>
+    <details><summary>Esqueci minha senha</summary><p>Na tela de entrar, toque em "Esqueci minha senha" e siga o link que chega no seu e-mail.</p></details>
+  </section>
+
+  <p class="foot">O Diário de Peptídeos é um diário pessoal de acompanhamento. Não indica doses e não substitui a orientação do seu médico.</p>
+</main>
+<script>
+(function(){
+  const ua=navigator.userAgent||'';
+  const isIOS=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const isAndroid=/Android/i.test(ua);
+  const inApp=/FBAN|FBAV|Instagram|WhatsApp|Line\/|Messenger|TikTok|; wv\)/i.test(ua);
+  const standalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  const tabs=[...document.querySelectorAll('[data-os]')],panels=[...document.querySelectorAll('[data-panel]')];
+  function show(os){tabs.forEach(t=>{const on=t.dataset.os===os;t.classList.toggle('on',on);t.setAttribute('aria-selected',on)});panels.forEach(p=>{p.hidden=p.dataset.panel!==os})}
+  tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.os)));
+  show(isIOS?'ios':isAndroid?'android':'pc');
+  if(standalone)document.getElementById('installed').hidden=false;
+  if(inApp){const n=document.getElementById('inapp');n.hidden=false;
+    n.textContent=isIOS?'Você abriu este link dentro de outro app. Para instalar, abra no Safari: toque no ícone de compartilhar ou nos três pontinhos e escolha "Abrir no Safari".'
+      :'Você abriu este link dentro de outro app. Para instalar, abra no Chrome: toque nos três pontinhos e escolha "Abrir no Chrome".'}
+  let deferred=null;const btn=document.getElementById('install');
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;if(!standalone)btn.hidden=false});
+  btn.addEventListener('click',async()=>{if(!deferred)return;deferred.prompt();const r=await deferred.userChoice;deferred=null;btn.hidden=true;
+    if(r&&r.outcome==='accepted'){const n=document.getElementById('installed');n.textContent='Instalado! Abra o Diário pelo ícone na tela inicial.';n.hidden=false}});
+  window.addEventListener('appinstalled',()=>{btn.hidden=true});
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+})();
+</script>
+</body>
+</html>
